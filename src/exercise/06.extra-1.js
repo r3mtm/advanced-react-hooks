@@ -1,11 +1,15 @@
 // useDebugValue: useMedia
-// http://localhost:3000/isolated/final/06.js
+// http://localhost:3000/isolated/exercise/06.js
 
 import * as React from 'react'
 
+const formatCountDebugValue = ({query, state}) => {
+  return `\`${query}\` => ${state}`
+}
+
 function useMedia(query, initialState = false) {
   const [state, setState] = React.useState(initialState)
-  React.useDebugValue(`\`${query}\` => ${state}`)
+  React.useDebugValue({query, state}, formatCountDebugValue)
   React.useEffect(() => {
     let mounted = true
     const mql = window.matchMedia(query)
